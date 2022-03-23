@@ -1,0 +1,33 @@
+<div class="container-rounded p-4">
+  <h4>Upcoming Nybbles</h4>
+  <br />
+  <div *ngFor="let event of events" class="card">
+    <div
+      class="card-body text-dark d-flex justify-content-between align-items-center"
+    >
+      <div class="d-flex justify-content-center align-items-center">
+        <img
+          width="50px"
+          height="50px"
+          [src]="'assets/' + event.device.color + '.svg'"
+          class="me-3 img-fluid"
+        />
+        <p class="pt-2 fw-bold">{{ event.device.name }}</p>
+      </div>
+      <p class="pt-2 fw-bold">
+        {{ event.eventDateTime.toDate() | date: "M/d/yyyy hh:mm a" }}
+      </p>
+      <div class="d-flex justify-content-center align-items-center">
+        <i
+          [ngClass]="[
+            'fas fa-circle-half-stroke custom-primary me-2',
+            event.isLeft ? '' : 'rotate-180'
+          ]"
+        ></i>
+        <p class="fw-bold p-0 m-0">
+          {{ event.isLeft ? event.device.leftSnack : event.device.rightSnack }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

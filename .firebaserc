@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "dariel-hackathon": {
+      "hosting": {
+        "astro-web": [
+          "dariel-hackathon"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "dariel-hackathon"
+  }
+}

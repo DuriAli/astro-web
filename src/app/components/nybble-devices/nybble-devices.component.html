@@ -1,0 +1,12 @@
+<div class="container-rounded p-4">
+  <h4>My Devices</h4>
+  <br />
+  <div class="d-flex">
+    <div *ngFor="let device of devices" class="card" (click)="onSelectDevice(device)">
+      <div class="card-body text-dark text-center">
+        <img class="img-fluid" [src]="'assets/'  + device.color + '.svg'" alt="" />
+        <h5 class="pt-2">{{device.name}}</h5>
+      </div>
+    </div>
+  </div>
+</div>

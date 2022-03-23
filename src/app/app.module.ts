@@ -3,14 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { NybbleDevicesComponent } from './components/nybble-devices/nybble-devices.component';
+import { NybbleEventsComponent } from './components/nybble-events/nybble-events.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NybbleDevicesComponent,
+    NybbleEventsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore())
   ],
   providers: [],
   bootstrap: [AppComponent]

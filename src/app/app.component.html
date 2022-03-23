@@ -1,7 +1,7 @@
-<div class="p-3">
+<div class="py-5">
   <div class="container">
     <div class="row">
-      <div class="col-3">
+      <div class="col-xl-3 col-md-12 justify-content-center align-items-center text-center">
         <div
           class="container-rounded text-light p-5 justify-content-center align-items-center text-center"
         >
@@ -12,46 +12,22 @@
           <a>johndoe@astro.com</a>
         </div>
         <div
-          class="container-rounded text-light mt-5 p-5 justify-content-center align-items-center text-center"
+          class="container-rounded text-light mt-3 p-5 "
         >
-          <div class="container-device">
-            <img src="../assets/PurpleIcon.svg" alt="" />
+          <div class="container-device mx-auto mb-2">
+            <img class="img-fluid" [src]="'../assets/' + selectedDevice?.color + '.svg'" alt="" />
           </div>
           <br />
-          <button class="btn btn-primary mb-2">Dispense Now</button>
-          <button class="btn btn-link text-secondary">
+          <button class="btn btn-primary mb-2" [disabled]="selectedDevice == null">Dispense Now</button>
+          <button class="btn btn-link text-secondary" [disabled]="selectedDevice == null">
             Schedule Dispenser
           </button>
         </div>
       </div>
-      <div class="col-9">
-        <div class="container-rounded p-4">
-          <h4>Upcoming Nybbles</h4>
-          <br>
-          <div class="card"><div class="card-body"></div></div>
-          <div class="card"><div class="card-body"></div></div>
-          <div class="card"><div class="card-body"></div></div>
-          <div class="card"><div class="card-body"></div></div>
-          <div class="card"><div class="card-body"></div></div>
-          <div class="card"><div class="card-body"></div></div>
-          <div class="card"><div class="card-body"></div></div>
-          <div class="card"><div class="card-body"></div></div>
-        </div>
+      <div class="col-xl-9 col-md-12 mt-3">
+        <app-nybble-events></app-nybble-events>
         <br />
-        <div class="container-rounded p-4">
-          <h4>My Devices</h4>
-          <br>
-          <div class="d-flex">
-            <div class="card"><div class="card-body"></div></div>
-            <div class="card"><div class="card-body"></div></div>
-            <div class="card"><div class="card-body"></div></div>
-            <div class="card"><div class="card-body"></div></div>
-            <div class="card"><div class="card-body"></div></div>
-            <div class="card"><div class="card-body"></div></div>
-            <div class="card"><div class="card-body"></div></div>
-            <div class="card"><div class="card-body"></div></div>
-          </div>
-        </div>
+        <app-nybble-devices (selectDevice)="setSelectedDevice($event)"></app-nybble-devices>
       </div>
     </div>
   </div>

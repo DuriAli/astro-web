@@ -14,3 +14,30 @@ $body-color: #fff;
 @import "../node_modules/bootstrap/scss/reboot";
 @import "../node_modules/bootstrap/scss/type";
 // etc
+
+.container-rounded {
+  background-color: #1a2226;
+  border-radius: 15px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border-radius: 100px;
+}
+
+.btn-primary {
+  background-color: #2aa573;
+  border-color: #2aa573;
+  
+  &:disabled {
+    border-color: #249367;
+    background-color: #249367;
+  }
+
+  &:hover {
+    border-color: #47cf99;
+    background-color: #47cf99;
+  }
+}
