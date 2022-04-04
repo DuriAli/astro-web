@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { NybbleDevicesComponent } from './components/nybble-devices/nybble-devices.component';
 import { NybbleEventsComponent } from './components/nybble-events/nybble-events.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NybbleEventsComponent } from './components/nybble-events/nybble-events.
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
   ],

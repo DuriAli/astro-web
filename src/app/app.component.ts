@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ServoService } from './services/servo-service/servo.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,12 @@ export class AppComponent {
     rightSnack: string,
   } | null = null;
 
-  setSelectedDevice(device:any){
-    this.selectedDevice = device;
+  constructor(public servoService: ServoService) { }
+
+  setSelectedDevice(device: any) {
+    // this.selectedDevice = device;
+    this.servoService.spinRightServo().then(data=>{
+      console.log(data);
+    });
   }
 }
