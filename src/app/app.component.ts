@@ -55,7 +55,13 @@ export class AppComponent {
         "isRepeatEvent": false,
         "deviceID": '/nybble-devices/3OuP1BcnwFoWnZ5yKhHn'
       }
-    ).then(data=>{
+    ).then(data => {
+      let now = dateTime;
+      let seconds = (dateTime.getTime() - new Date().getTime());
+
+      setTimeout(() => {
+        this.dispenseNow();
+      }, seconds);
     });
   }
 
