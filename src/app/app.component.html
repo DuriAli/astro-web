@@ -1,7 +1,9 @@
 <div class="py-5">
   <div class="container">
     <div class="row">
-      <div class="col-xl-3 col-md-12 justify-content-center align-items-center text-center">
+      <div
+        class="col-xl-3 col-md-12 justify-content-center align-items-center text-center"
+      >
         <div
           class="container-rounded text-light p-5 justify-content-center align-items-center text-center"
         >
@@ -11,23 +13,98 @@
           <p>(011) 681 6001</p>
           <a>johndoe@astro.com</a>
         </div>
-        <div
-          class="container-rounded text-light mt-3 p-5 "
-        >
+        <div class="container-rounded text-light mt-3 p-5">
           <div class="container-device mx-auto mb-2">
-            <img class="img-fluid" [src]="'../assets/' + selectedDevice?.color + '.svg'" alt="" />
+            <img
+              class="img-fluid"
+              [src]="'../assets/' + selectedDevice?.color + '.svg'"
+              alt=""
+            />
           </div>
           <br />
-          <button class="btn btn-primary mb-2" [disabled]="selectedDevice == null">Dispense Now</button>
-          <button class="btn btn-link text-secondary" [disabled]="selectedDevice == null">
+          <button
+            class="btn btn-primary mb-2"
+            [disabled]="selectedDevice == null"
+          >
+            Dispense Now
+          </button>
+          <button
+            class="btn btn-link text-secondary"
+            [disabled]="selectedDevice !== null"
+            (click)="schedule(content)"
+          >
             Schedule Dispenser
           </button>
+          <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title">Profile update</h4>
+              <button
+                type="button"
+                class="btn-close"
+                aria-label="Close"
+                (click)="modal.dismiss('Cross click')"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="selectDateTime">Date of birth</label>
+                  <div class="input-group">
+                    <input
+                      id="selectDateTime"
+                      class="form-control"
+                      placeholder="yyyy-mm-dd"
+                      name="dp"
+                      ngbDatepicker
+                      #dp="ngbDatepicker"
+                    />
+                    <button
+                      class="btn btn-outline-primary"
+                      (click)="dp.toggle()"
+                      type="button"
+                    >
+                      <span class="material-icons"> event </span>
+                    </button>
+                  </div>
+                  <ngb-timepicker [(ngModel)]="time" name="tp"></ngb-timepicker>
+                  <div class="row">
+                    <div class="col">
+                      <div ngbDropdown class="d-inline-block">
+                        <button
+                          class="btn btn-outline-primary"
+                          id="selectHelmet"
+                          ngbDropdownToggle
+                        >
+                          Select Helmet
+                        </button>
+                        <div ngbDropdownMenu aria-labelledby="selectHelmet">
+                          <button ngbDropdownItem>First helmet</button>
+                          <button ngbDropdownItem>Second helmet</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-dark"
+                (click)="modal.close('Save click'); displayTime()"
+              >
+                Save
+              </button>
+            </div>
+          </ng-template>
         </div>
       </div>
       <div class="col-xl-9 col-md-12 mt-3">
-        <app-nybble-events></app-nybble-events>
+        <!-- <app-nybble-events></app-nybble-events> -->
         <br />
-        <app-nybble-devices (selectDevice)="setSelectedDevice($event)"></app-nybble-devices>
+        <app-nybble-devices
+          (selectDevice)="setSelectedDevice($event)"
+        ></app-nybble-devices>
       </div>
     </div>
   </div>
