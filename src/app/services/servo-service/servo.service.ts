@@ -9,7 +9,7 @@ export class ServoService {
 
   public spinServo(): Promise<any> {
     return this.webReqService
-      .get("/")
+      .get("")
       .toPromise()
       .then((response) => {
         return response;

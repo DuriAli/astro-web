@@ -23,18 +23,21 @@ export class NybbleEventsComponent implements OnInit {
     collectionData(collection(this.firestore, 'nybble-events')).pipe(first()).subscribe((data => {
       this.events = data;
       this.events.forEach((e, i) => {
-        let id = e.deviceID._key.path.segments[e.deviceID._key.path.segments.length - 1];
-        getDoc(doc(this.firestore, 'nybble-devices', id)).then(data => {
-          this.events[i].device = data.data();
-          this.device = data.data();
-        }).finally(() => {
-          console.log(data);
-          console.log(this.device)
-          this.events.forEach(e => {
-            e.device = this.device
+        if (e.isLeft == false) {
+          let id = e.deviceID._key.path.segments[e.deviceID._key.path.segments.length - 1];
+          getDoc(doc(this.firestore, 'nybble-devices', id)).then(data => {
+            this.events[i].device = data.data();
+            this.device = data.data();
+          }).finally(() => {
+            console.log(data);
+            console.log(this.device)
+            this.events.forEach(e => {
+              e.device = this.device
+            })
+            this.isLoading = false;
           })
-          this.isLoading = false;
-        })
+        }
+
       });
 
     }));

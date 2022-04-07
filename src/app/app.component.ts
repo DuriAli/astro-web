@@ -31,8 +31,11 @@ export class AppComponent {
 
   setSelectedDevice(device: any) {
     this.selectedDevice = device;
+
+  }
+
+  dispenseNow() {
     this.servoService.spinServo().then((data) => {
-      console.log(data);
     });
   }
 
@@ -52,7 +55,8 @@ export class AppComponent {
         "isRepeatEvent": false,
         "deviceID": '/nybble-devices/3OuP1BcnwFoWnZ5yKhHn'
       }
-    );
+    ).then(data=>{
+    });
   }
 
   scheduleDispenser(content: any) {
