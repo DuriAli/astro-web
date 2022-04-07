@@ -22,7 +22,7 @@ export class WebReqService {
 
   constructor(public http: HttpClient) { }
 
-  readonly ROOT_URL = "http://192.168.0.90:3000";
+  readonly ROOT_URL = "http://172.20.10.6:80";
 
   get(
     uri: string,

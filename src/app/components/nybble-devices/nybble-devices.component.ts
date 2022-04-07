@@ -9,6 +9,7 @@ import { first, pipe } from 'rxjs';
 })
 export class NybbleDevicesComponent implements OnInit {
   @Output() selectDevice: EventEmitter<any> = new EventEmitter();
+  isLoading = false;
 
   devices: any[] = [];
 
@@ -19,8 +20,11 @@ export class NybbleDevicesComponent implements OnInit {
   }
 
   fetchDevices() {
+    this.isLoading = true;
     collectionData(collection(this.firestore, 'nybble-devices')).pipe(first()).subscribe((data => {
       this.devices = data;
+      this.onSelectDevice(this.devices[0]);
+      this.isLoading = false;
     }));
   }
 

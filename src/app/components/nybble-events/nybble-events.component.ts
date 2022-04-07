@@ -8,29 +8,35 @@ import { first, pipe } from 'rxjs';
   styleUrls: ['./nybble-events.component.scss']
 })
 export class NybbleEventsComponent implements OnInit {
-
+  isLoading = false;
   events: any[] = [];
 
-  constructor(public firestore: Firestore, public firestoreInstance: FirestoreInstances) { }
+  device: any = null;
+  constructor(public firestore: Firestore) { }
 
   ngOnInit(): void {
     this.fetchDevices();
   }
 
   fetchDevices() {
+    this.isLoading = true;
     collectionData(collection(this.firestore, 'nybble-events')).pipe(first()).subscribe((data => {
       this.events = data;
       this.events.forEach((e, i) => {
-        console.log(e.eventDateTime.toDate())
-
         let id = e.deviceID._key.path.segments[e.deviceID._key.path.segments.length - 1];
         getDoc(doc(this.firestore, 'nybble-devices', id)).then(data => {
           this.events[i].device = data.data();
-
+          this.device = data.data();
+        }).finally(() => {
+          console.log(data);
+          console.log(this.device)
+          this.events.forEach(e => {
+            e.device = this.device
+          })
+          this.isLoading = false;
         })
       });
 
-      console.log(this.events)
     }));
   }
 
