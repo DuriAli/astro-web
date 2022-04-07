@@ -9,6 +9,8 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { NybbleDevicesComponent } from './components/nybble-devices/nybble-devices.component';
 import { NybbleEventsComponent } from './components/nybble-events/nybble-events.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,8 +22,10 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
